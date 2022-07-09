@@ -1,0 +1,17 @@
+.container {
+  display: flex;
+  justify-content: center;
+  background-color: var(--primary-background-color);
+}
+
+.content {
+  display: flex;
+  width: 470px;
+  margin-right: 32px;
+}
+
+.sidebar {
+  display: flex;
+  width: 319px;
+  margin-right: 16px;
+}

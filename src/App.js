@@ -8,7 +8,7 @@ function App() {
     <Router>
       <Routes>
         {publicRoute.map((route, index) => {
-          const Layout = route.layout == SettingLayout ? SettingLayout : DashboardLayout;
+          const Layout = route.layout === SettingLayout ? SettingLayout : DashboardLayout;
           const Page = route.component;
           return (
             <Route

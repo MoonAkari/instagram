@@ -1,0 +1,47 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+
+  &:hover {
+    background-color: var(--hover-background-color);
+    cursor: pointer;
+  }
+}
+
+.avatar {
+  width: 44px;
+  height: 44px;
+  margin-right: 12px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex: 1;
+
+  .id-name {
+    font-weight: 500;
+
+    .verified-icon {
+      margin-left: 6px;
+      font-size: 1.3rem;
+      color: #3897f0;
+    }
+  }
+
+  .name {
+    font-weight: 300;
+    color: var(--fade-text-color);
+  }
+}
+
+.close-icon {
+  padding: 6px 10px;
+  font-size: 2rem;
+  color: var(--fade-text-color);
+}
