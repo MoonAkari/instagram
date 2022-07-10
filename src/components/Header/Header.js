@@ -2,18 +2,18 @@ import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faCircleXmark, faSpinner, faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import images from '../../assets/image/image';
 import Popover from '../popover/Popover';
 import AccountItems from '../accountItems/AccountItems';
+import Button from '../button/Button';
 
 const cx = classNames.bind(styles);
 
 function Header() {
-  const [isNull, setIsNull] = useState(null);
   const [isValue, setIsValue] = useState(null);
 
   const inputEl = useRef(null);
@@ -28,7 +28,7 @@ function Header() {
 
         <Tippy
           interactive
-          visible
+          visible={false}
           render={(attrs) => (
             <div className="search-result" tabIndex="-1" {...attrs}>
               <Popover width={375}>
@@ -64,7 +64,12 @@ function Header() {
           </div>
         </Tippy>
 
-        <div className={cx('nav-bar')}>asdsad</div>
+        <div className={cx('nav-bar')}>
+          <Button primary small>
+            Log in
+          </Button>
+          <Button text>Sign up</Button>
+        </div>
       </div>
     </header>
   );

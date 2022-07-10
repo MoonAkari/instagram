@@ -5,7 +5,8 @@
   --primary-text-color: #262626;
   --primary-background-color: #fafafa;
   --primary-boder-color: #dbdbdb;
-  --primary-button-color: #0095f7;
+  --button-color: #0095f6;
+  --button-active-color: #4cb5f9;
   --fade-text-color: #8e8e8e;
   --hover-background-color: #fafafa;
 }
@@ -14,9 +15,6 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  outline: none;
-  border: none;
-  background-color: transparent;
 }
 
 html {
@@ -29,4 +27,16 @@ body {
   line-height: 1.5;
   text-rendering: optimizeSpeed;
   color: var(--primary-text-color);
+}
+
+button,
+input {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+a[href] {
+  color: var(--primary-text-color);
+  text-decoration: none;
 }
