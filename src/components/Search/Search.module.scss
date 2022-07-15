@@ -1,0 +1,121 @@
+.search-bar {
+  position: relative;
+  width: 268px;
+  border-radius: 8px;
+  padding: 6px 16px;
+  background-color: #efefef;
+  color: #8e8e8e;
+  z-index: 2;
+}
+
+.popover-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 16px 8px;
+
+  h4 {
+    font-size: 1.6rem;
+    font-weight: 500;
+  }
+
+  button {
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--button-color);
+    cursor: pointer;
+  }
+}
+
+.input-box {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  padding: 6px 16px;
+  border-radius: 8px;
+  background-color: #efefef;
+  font-size: 1.8rem;
+  font-weight: 300;
+  caret-color: #000;
+  z-index: 1;
+
+  &::-webkit-input-placeholder {
+    /* Edge */
+
+    color: #8e8e8e;
+    opacity: 1;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+      'Helvetica Neue', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 400;
+  }
+}
+
+.holder-search-icon {
+  position: absolute;
+  top: 50%;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  transform: translateY(-50%);
+  cursor: text;
+  z-index: 2;
+
+  .search-icon {
+    padding-right: 10px;
+    color: #8e8e8e;
+  }
+
+  span {
+    line-height: 1.8rem;
+    font-weight: 400;
+    color: #8e8e8e;
+    user-select: none;
+  }
+}
+
+.input-box:focus ~ .holder-search-icon .search-icon {
+  display: none;
+}
+
+.clear-icon {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  color: #c7c7c7;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.loading-icon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  color: #c7c7c7;
+  z-index: 2;
+  animation: spinner 1s linear infinite;
+}
+
+@keyframes spinner {
+  from {
+    transform: translateY(-50%) rotate(0);
+  }
+  to {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+.fallback {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--fade-text-color);
+}

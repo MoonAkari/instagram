@@ -3,9 +3,9 @@ import styles from './Popover.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Popover({ width, children }) {
+function Popover({ width = '375px', height = '362px', children }) {
   return (
-    <div className={cx('popover-box')} style={{ width: `${width}px` }}>
+    <div className={cx('popover-box')} style={{ width: `${width}`, height: `${height}` }}>
       {children}
     </div>
   );

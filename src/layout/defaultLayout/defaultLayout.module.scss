@@ -1,7 +1,10 @@
 .container {
+  position: relative;
+  top: 60px;
   display: flex;
   justify-content: center;
   background-color: var(--primary-background-color);
+  z-index: -1;
 }
 
 .content {

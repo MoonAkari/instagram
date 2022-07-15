@@ -1,0 +1,32 @@
+.content {
+  overflow: hidden;
+}
+
+.profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 29px;
+  height: 29px;
+  margin-left: 16px;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &.active {
+    border-color: var(--primary-text-color);
+  }
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  height: 24px;
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+}
