@@ -8,6 +8,7 @@ import { faMagnifyingGlass, faCircleXmark, faSpinner } from '@fortawesome/free-s
 import Popover from '../popover/Popover';
 import AccountItems from '../accountItems/AccountItems';
 import useDebounce from '../../hooks/useDebounce';
+import * as apiServices from '../../services/apiServices';
 
 const cx = classNames.bind(styles);
 
@@ -59,17 +60,15 @@ function Search() {
       return;
     }
 
-    setLoading(true);
+    const fetchApi = async () => {
+      setLoading(true);
 
-    fetch(`https://tiktok.fullstack.edu.vn/api/users/search?q=${encodeURIComponent(debounce)}&type=less`)
-      .then((response) => response.json())
-      .then((response) => {
-        setSearchResult(response.data);
-        setLoading(false);
-      })
-      .catch(() => {
-        setLoading(false);
-      });
+      const result = await apiServices.getSearch(debounce);
+      setSearchResult(result);
+
+      setLoading(false);
+    };
+    fetchApi();
   }, [debounce]);
 
   console.log(visible);
