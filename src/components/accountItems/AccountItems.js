@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark, faCircleCheck } from '@fortawesome/free-solid-svg-icons';
 import classNames from 'classnames/bind';
@@ -24,5 +25,12 @@ function AccountItems({ recentData, searchData, closeBtn, onClick, ...passProps 
     </Link>
   );
 }
+
+AccountItems.propTypes = {
+  recentData: PropTypes.instanceOf(Object),
+  searchData: PropTypes.instanceOf(Object),
+  closeBtn: PropTypes.bool,
+  onClick: PropTypes.func,
+};
 
 export default AccountItems;

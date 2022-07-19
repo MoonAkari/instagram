@@ -1,7 +1,7 @@
 import { handleResponse, handleError } from './apiUtils';
 import axios from 'axios';
 
-const rootURL = `https://tiktok.fullstack.edu.vn/api`;
+const rootURL = `${process.env.REACT_APP_BASE_URL}`;
 
 const apiAction = (api) =>
   axios({

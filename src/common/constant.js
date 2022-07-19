@@ -18,6 +18,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faInstagram, faInstagramSquare } from '@fortawesome/free-brands-svg-icons';
 
+import { ROUTES } from '../config/routes';
+
 export const MENU_ITEMS = [
   {
     title: 'Profile',
@@ -32,7 +34,7 @@ export const MENU_ITEMS = [
   {
     title: 'Setting',
     icon: <FontAwesomeIcon icon={faGear} />,
-    to: '/setting',
+    to: ROUTES.SETTING,
   },
   {
     title: 'Switch accounts',
@@ -43,12 +45,12 @@ export const MENU_ITEMS = [
   },
 ];
 
-export const NAVBAR_ICON = [
+export const NAVBAR_ROUTES = [
   {
     name: 'home',
     icon: <FontAwesomeIcon icon={faInstagram} />,
     active: <FontAwesomeIcon icon={faInstagramSquare} />,
-    to: '/',
+    to: ROUTES.HOME,
   },
   {
     name: 'home',

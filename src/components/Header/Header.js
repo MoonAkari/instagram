@@ -3,7 +3,7 @@ import styles from './Header.module.scss';
 
 import images from '../../assets/image/image';
 import Button from '../button/Button';
-import Profile from '../profileBtn/Profile';
+import NavBar from '../navbar/Navbar';
 import Search from '../Search/Search';
 
 const cx = classNames.bind(styles);
@@ -24,9 +24,7 @@ function Header() {
 
         <div className={cx('nav-bar')}>
           {authenticated ? (
-            <>
-              <Profile />
-            </>
+            <NavBar />
           ) : (
             <>
               <Button primary small>

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './MenuItem.module.scss';
 import Button from '../../button/Button';
@@ -13,5 +14,10 @@ function MenuItem({ item = [], onClick }) {
     </Button>
   );
 }
+
+MenuItem.propType = {
+  MenuItem: PropTypes.array.isRequired,
+  onClick: PropTypes.func,
+};
 
 export default MenuItem;

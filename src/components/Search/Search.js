@@ -43,18 +43,52 @@ function Search() {
   const inputRef = useRef('');
   const debounce = useDebounce(inputValue, 500);
 
+  const show = () => setVisible(true);
+  const hide = () => setVisible(false);
+
   const onInputClick = () => {
     inputRef.current.focus();
   };
 
-  const show = () => setVisible(true);
-  const hide = () => setVisible(false);
-
-  const handleClear = () => {
+  const handleClearBtn = () => {
     setInputValue('');
     setVisible(false);
   };
 
+  //Handle display Recent search
+  const RecentSearch = () => {
+    return (
+      <>
+        <div className={cx('popover-header')}>
+          <h4>Recent</h4>
+          <button>Clear all</button>
+        </div>
+
+        {recentData.length > 0 ? (
+          recentData.map((recentData) => {
+            return (
+              <AccountItems key={recentData.id} recentData={recentData} closeBtn onClick={() => setVisible(false)} />
+            );
+          })
+        ) : (
+          <div className={cx('fallback')}>No recent searches.</div>
+        )}
+      </>
+    );
+  };
+
+  //Handle display search result
+  const SearchResultCom = () => {
+    if (searchResult.length > 0) {
+      return searchResult.map((data) => {
+        return <AccountItems key={data.id} searchData={data} />;
+      });
+    } else {
+      return <div className={cx('fallback')}>No results found.</div>;
+    }
+  };
+
+  //Handle User API
   useEffect(() => {
     if (!debounce.trim()) {
       return;
@@ -71,8 +105,6 @@ function Search() {
     fetchApi();
   }, [debounce]);
 
-  console.log(visible);
-
   return (
     <Tippy
       interactive
@@ -81,34 +113,7 @@ function Search() {
       placement="bottom"
       render={(attrs) => (
         <div className="search-result" tabIndex="-1" {...attrs}>
-          <Popover>
-            {!inputValue ? (
-              <>
-                <div className={cx('popover-header')}>
-                  <h4>Recent</h4>
-                  <button>Clear all</button>
-                </div>
-                {recentData.length > 0 ? (
-                  recentData.map((recentData) => {
-                    return (
-                      <AccountItems
-                        key={recentData.id}
-                        recentData={recentData}
-                        closeBtn
-                        onClick={() => setVisible(false)}
-                      />
-                    );
-                  })
-                ) : (
-                  <div className={cx('fallback')}>No recent searches.</div>
-                )}
-              </>
-            ) : (
-              searchResult.map((data) => {
-                return <AccountItems key={data.id} searchData={data} />;
-              })
-            )}
-          </Popover>
+          <Popover>{!inputValue ? <RecentSearch /> : <SearchResultCom />}</Popover>
         </div>
       )}
     >
@@ -120,16 +125,17 @@ function Search() {
           onChange={(e) => setInputValue(e.target.value)}
           onFocus={show}
           placeholder={visible ? 'Search' : undefined}
+          style={visible ? { color: '#262626' } : { color: 'transparent' }}
         />
         {!visible && (
           <div className={cx('holder-search-icon')} onClick={onInputClick}>
             <FontAwesomeIcon className={cx('search-icon')} icon={faMagnifyingGlass} />
-            <span>Search</span>
+            <span>{inputValue ? inputValue : 'Search'}</span>
           </div>
         )}
         <button>
           {!!visible && !loading && (
-            <FontAwesomeIcon className={cx('clear-icon')} icon={faCircleXmark} onClick={handleClear} />
+            <FontAwesomeIcon className={cx('clear-icon')} icon={faCircleXmark} onClick={handleClearBtn} />
           )}
         </button>
         {loading && <FontAwesomeIcon className={cx('loading-icon')} icon={faSpinner} />}
