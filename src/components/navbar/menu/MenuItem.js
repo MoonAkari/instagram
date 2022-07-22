@@ -5,8 +5,8 @@ import Button from '../../button/Button';
 
 const cx = classNames.bind(styles);
 
-function MenuItem({ item = [], onClick }) {
-  const props = { onClick };
+function MenuItem({ item = [], onClick, ...passProps }) {
+  const props = { onClick, ...passProps };
 
   return (
     <Button text to={item.to} className={cx('menu-item')} iconLeft={item.icon} {...props}>

@@ -1,25 +1,27 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './Button.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const cx = classNames.bind(styles);
 
 function Button({
   to,
   href,
+  navLink,
   className,
   primary = false,
   border = false,
   rounded = false,
   text = false,
+  tagName = false,
   icon = false,
   small = false,
   medium = false,
   larger = false,
   iconLeft = false,
   iconRight = false,
-  color = false,
+  underline = false,
   lightActive = true,
   darkActive = false,
   children,
@@ -30,12 +32,15 @@ function Button({
   let Component = 'button';
   const props = { onClick, ...passProps };
 
-  if (to) {
-    props.to = to;
-    Component = Link;
-  } else if (href) {
+  if (href) {
     props.href = href;
     Component = 'a';
+  } else if (to && navLink) {
+    props.to = to;
+    Component = NavLink;
+  } else if (to) {
+    props.to = to;
+    Component = Link;
   }
 
   if (disable) {
@@ -48,12 +53,13 @@ function Button({
     border,
     rounded,
     text,
+    tagName,
     icon,
     small,
     medium,
     larger,
+    underline,
     disable,
-    color,
     lightActive,
     darkActive,
   });
@@ -75,13 +81,14 @@ Button.propTypes = {
   border: PropTypes.bool,
   rounded: PropTypes.bool,
   text: PropTypes.bool,
+  tagName: PropTypes.bool,
   icon: PropTypes.bool,
   small: PropTypes.bool,
   medium: PropTypes.bool,
   larger: PropTypes.bool,
+  underline: PropTypes.bool,
   iconLeft: PropTypes.node,
   iconRight: PropTypes.node,
-  color: PropTypes.string,
   lightActive: PropTypes.bool,
   darkActive: PropTypes.bool,
   children: PropTypes.node,

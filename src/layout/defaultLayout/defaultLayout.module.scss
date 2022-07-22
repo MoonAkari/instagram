@@ -1,15 +1,15 @@
 .container {
-  position: relative;
-  top: 60px;
   display: flex;
+  margin-top: 60px;
+  padding-top: 16px;
   justify-content: center;
   background-color: var(--primary-background-color);
-  z-index: -1;
 }
 
 .content {
   display: flex;
-  width: 470px;
+  width: 100%;
+  max-width: 470px;
   margin-right: 32px;
 }
 

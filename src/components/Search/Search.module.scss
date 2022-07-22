@@ -32,7 +32,7 @@
   top: 0;
   height: 100%;
   width: 100%;
-  padding: 6px 16px;
+  padding: 6px 45px 6px 16px;
   border-radius: 8px;
   background-color: #efefef;
   font-family: var(--font-family);
@@ -49,10 +49,6 @@
     font-family: var(--font-family);
     font-size: var(--font-size-search-box);
     font-weight: var(--font-weight-search-box);
-  }
-
-  &:focus {
-    width: 90%;
   }
 }
 

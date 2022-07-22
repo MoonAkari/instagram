@@ -14,7 +14,7 @@
   }
 
   &.disable {
-    opacity: 0.7;
+    opacity: 0.6;
     pointer-events: none;
   }
 
@@ -24,6 +24,10 @@
 
   &.darkActive:active {
     filter: brightness(70%);
+  }
+
+  &.underline:hover {
+    text-decoration: underline !important;
   }
 }
 
@@ -45,8 +49,13 @@
 }
 
 .text {
-  color: var(--button-color);
+  color: var(--primary-text-color);
   font-weight: 500;
+}
+
+.tagName {
+  color: var(--button-color);
+  font-weight: 400;
 }
 
 .icon {

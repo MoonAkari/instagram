@@ -106,41 +106,43 @@ function Search() {
   }, [debounce]);
 
   return (
-    <Tippy
-      interactive
-      visible={visible}
-      onClickOutside={hide}
-      placement="bottom"
-      render={(attrs) => (
-        <div className="search-result" tabIndex="-1" {...attrs}>
-          <Popover>{!inputValue ? <RecentSearch /> : <SearchResultCom />}</Popover>
-        </div>
-      )}
-    >
-      <div className={cx('search-bar')}>
-        <input
-          ref={inputRef}
-          className={cx('input-box')}
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          onFocus={show}
-          placeholder={visible ? 'Search' : undefined}
-          style={visible ? { color: '#262626' } : { color: 'transparent' }}
-        />
-        {!visible && (
-          <div className={cx('holder-search-icon')} onClick={onInputClick}>
-            <FontAwesomeIcon className={cx('search-icon')} icon={faMagnifyingGlass} />
-            <span>{inputValue ? inputValue : 'Search'}</span>
+    <div className={cx('container')}>
+      <Tippy
+        interactive
+        visible={visible}
+        onClickOutside={hide}
+        placement="bottom"
+        render={(attrs) => (
+          <div className="search-result" tabIndex="-1" {...attrs}>
+            <Popover>{!inputValue ? <RecentSearch /> : <SearchResultCom />}</Popover>
           </div>
         )}
-        <button>
-          {!!visible && !loading && (
-            <FontAwesomeIcon className={cx('clear-icon')} icon={faCircleXmark} onClick={handleClearBtn} />
+      >
+        <div className={cx('search-bar')}>
+          <input
+            ref={inputRef}
+            className={cx('input-box')}
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onFocus={show}
+            placeholder={visible ? 'Search' : undefined}
+            style={visible ? { color: '#262626' } : { color: 'transparent' }}
+          />
+          {!visible && (
+            <div className={cx('holder-search-icon')} onClick={onInputClick}>
+              <FontAwesomeIcon className={cx('search-icon')} icon={faMagnifyingGlass} />
+              <span>{inputValue ? inputValue : 'Search'}</span>
+            </div>
           )}
-        </button>
-        {loading && <FontAwesomeIcon className={cx('loading-icon')} icon={faSpinner} />}
-      </div>
-    </Tippy>
+          <button>
+            {!!visible && !loading && (
+              <FontAwesomeIcon className={cx('clear-icon')} icon={faCircleXmark} onClick={handleClearBtn} />
+            )}
+          </button>
+          {loading && <FontAwesomeIcon className={cx('loading-icon')} icon={faSpinner} />}
+        </div>
+      </Tippy>
+    </div>
   );
 }
 
