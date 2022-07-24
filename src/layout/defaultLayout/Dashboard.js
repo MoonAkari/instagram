@@ -8,10 +8,7 @@ function DashboardLayout({ children }) {
   return (
     <>
       <Header />
-      <div className={cx('container')}>
-        <div className={cx('content')}>{children}</div>
-        <aside className={cx('sidebar')}></aside>
-      </div>
+      <div className={cx('container')}>{children}</div>
     </>
   );
 }

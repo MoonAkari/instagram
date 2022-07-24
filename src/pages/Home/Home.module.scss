@@ -1,6 +1,15 @@
 .container {
+  display: flex;
+  justify-content: center;
+  margin-right: -16px;
+  background-color: var(--primary-background-color);
+}
+
+.content {
   display: block;
   width: 100%;
+  max-width: 470px;
+  margin-right: 32px;
 }
 
 .stories-bar {
@@ -32,4 +41,11 @@
   font-size: 1.2rem;
   font-weight: 400;
   color: var(--primary-text-color);
+}
+
+//sidebar
+.sidebar {
+  display: flex;
+  width: 319px;
+  margin-right: 16px;
 }

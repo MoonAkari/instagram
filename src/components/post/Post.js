@@ -133,9 +133,11 @@ function Post({ data, className }) {
           </div>
         </div>
 
-        <Button text to="/" className={cx('time-bar')}>
-          6 days ago
-        </Button>
+        <div style={{ display: 'flex' }}>
+          <Button text to="/" className={cx('time-bar')}>
+            6 days ago
+          </Button>
+        </div>
       </div>
 
       <div className={cx('comment-box')}>

@@ -4,15 +4,20 @@ import styles from './Popover.module.scss';
 
 const cx = classNames.bind(styles);
 
-function Popover({ width = '375px', height = '362px', children }) {
+function Popover({ className, width = '375px', height = '362px', children }) {
+  const classes = cx('popover-box', {
+    [className]: className,
+  });
+
   return (
-    <div className={cx('popover-box')} style={{ width: `${width}`, height: `${height}` }}>
+    <div className={classes} style={{ width: `${width}`, height: `${height}` }}>
       {children}
     </div>
   );
 }
 
 Popover.propTypes = {
+  className: PropTypes.string,
   width: PropTypes.string,
   height: PropTypes.string,
   children: PropTypes.node.isRequired,

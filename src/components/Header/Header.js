@@ -5,11 +5,12 @@ import images from '../../assets/image/image';
 import Button from '../button/Button';
 import NavBar from '../navbar/Navbar';
 import Search from '../Search/Search';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
 function Header() {
-  let authenticated = true;
+  const [authenticated, setAuthenticated] = useState('true');
 
   return (
     <header className={cx('header')}>
@@ -24,10 +25,10 @@ function Header() {
 
         <div className={cx('nav-bar')}>
           {authenticated ? (
-            <NavBar />
+            <NavBar setAuthenticated={() => setAuthenticated()} />
           ) : (
             <>
-              <Button primary small>
+              <Button primary small onClick={() => setAuthenticated(true)}>
                 Log in
               </Button>
               <Button text>Sign up</Button>

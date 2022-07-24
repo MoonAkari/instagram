@@ -16,6 +16,9 @@
   //Search box variable
   --font-size-search-box: 1.6rem;
   --font-weight-search-box: 350;
+
+  //footer style
+  --footer-text-color: #c7c7ca;
 }
 
 * {
@@ -29,7 +32,6 @@ html {
 }
 
 body {
-  height: 2000px;
   font-family: var(--font-family);
   font-size: 1.6rem;
   line-height: 1.5;
@@ -47,4 +49,8 @@ input {
 a[href] {
   color: var(--primary-text-color);
   text-decoration: none;
+}
+
+li {
+  list-style: none;
 }

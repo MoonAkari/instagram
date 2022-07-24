@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './Navbar.module.scss';
 import Tippy from '@tippyjs/react/headless';
@@ -12,7 +13,7 @@ import Image from '../../components/Image/Image';
 
 const cx = classNames.bind(styles);
 
-function Navbar() {
+function Navbar({ setAuthenticated }) {
   const [visible, setVisible] = useState(false);
   const { pathname } = useLocation();
 
@@ -31,7 +32,16 @@ function Navbar() {
 
   const renderMenuItem = () => {
     return MENU_ITEMS.map((item, index) => {
-      return <MenuItem key={index} item={item} onClick={() => setVisible(false)} />;
+      return (
+        <MenuItem
+          key={index}
+          item={item}
+          onClick={() => {
+            setVisible(false);
+            if (item.title === 'Log Out') setAuthenticated(false);
+          }}
+        />
+      );
     });
   };
 
@@ -63,5 +73,9 @@ function Navbar() {
     </nav>
   );
 }
+
+Navbar.propTypes = {
+  setAuthenticated: PropTypes.func.isRequired,
+};
 
 export default Navbar;
