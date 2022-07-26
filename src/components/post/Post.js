@@ -52,13 +52,16 @@ function Post({ data, className }) {
       <div className={cx('content')}>
         <section className={cx('action-bar')}>
           <div className={cx('action-left')}>
-            <Button icon className={cx('action-icon')} onClick={() => setLiked(!liked)}>
-              {!liked ? (
+            {!liked ? (
+              <Button icon className={cx('action-icon')} onClick={() => setLiked(!liked)}>
                 <FontAwesomeIcon icon={faHeart} />
-              ) : (
+              </Button>
+            ) : (
+              <Button icon className={cx('action-icon-active')} onClick={() => setLiked(!liked)}>
                 <FontAwesomeIcon icon={heartFill} className={cx('hear-fill')} />
-              )}
-            </Button>
+              </Button>
+            )}
+
             <Button icon className={cx('action-icon')}>
               <FontAwesomeIcon icon={faComment} />
             </Button>
@@ -68,9 +71,15 @@ function Post({ data, className }) {
           </div>
 
           <div className={cx('action-right')} onClick={() => setBookmarked(!bookmarked)}>
-            <Button icon className={cx('action-icon')}>
-              {!bookmarked ? <FontAwesomeIcon icon={faBookmark} /> : <FontAwesomeIcon icon={bookmarkFill} />}
-            </Button>
+            {!bookmarked ? (
+              <Button icon className={cx('action-icon')}>
+                <FontAwesomeIcon icon={faBookmark} />
+              </Button>
+            ) : (
+              <Button icon className={cx('action-icon-active')}>
+                <FontAwesomeIcon icon={bookmarkFill} />
+              </Button>
+            )}
           </div>
         </section>
 

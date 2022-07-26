@@ -25,8 +25,8 @@ function SideBar({ data, className }) {
   }, []);
 
   const renderSuggestItem = () => {
-    return suggestResult.map((item) => {
-      return (
+    return suggestResult.map((item, index) => {
+      return index < 5 ? (
         <li key={item.id} className={cx('sugg-item')}>
           <Image
             className={cx('avatar')}
@@ -47,6 +47,8 @@ function SideBar({ data, className }) {
             Follow
           </Button>
         </li>
+      ) : (
+        <></>
       );
     });
   };

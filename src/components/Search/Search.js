@@ -78,19 +78,28 @@ function Search() {
   };
 
   //Handle display search result
-  const SearchResultCom = () => {
+  const SearchResultComp = () => {
     if (searchResult.length > 0) {
       return searchResult.map((data) => {
-        return <AccountItems key={data.id} searchData={data} />;
+        return loading ? (
+          <FontAwesomeIcon className={cx('loading-resultbar')} icon={faSpinner} />
+        ) : (
+          <AccountItems key={data.id} searchData={data} />
+        );
       });
     } else {
-      return <div className={cx('fallback')}>No results found.</div>;
+      return loading ? (
+        <FontAwesomeIcon className={cx('loading-resultbar')} icon={faSpinner} />
+      ) : (
+        <div className={cx('fallback')}>No results found.</div>
+      );
     }
   };
 
   //Handle User API
   useEffect(() => {
     if (!debounce.trim()) {
+      setSearchResult([]);
       return;
     }
 
@@ -114,7 +123,7 @@ function Search() {
         placement="bottom"
         render={(attrs) => (
           <div className="search-result" tabIndex="-1" {...attrs}>
-            <Popover>{!inputValue ? <RecentSearch /> : <SearchResultCom />}</Popover>
+            <Popover>{debounce ? <SearchResultComp /> : <RecentSearch />}</Popover>
           </div>
         )}
       >

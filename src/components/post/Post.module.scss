@@ -58,8 +58,13 @@
   }
 }
 
+.action-icon-active {
+  padding: 8px;
+}
+
 .hear-fill {
   color: var(--heart-fill);
+  cursor: pointer;
   animation: intro 0.3s ease;
 }
 
@@ -99,6 +104,7 @@
 
 .content-bar {
   display: block;
+  margin-bottom: 8px;
 }
 
 .status,
