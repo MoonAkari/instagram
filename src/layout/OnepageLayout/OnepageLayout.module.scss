@@ -1,19 +1,16 @@
 .container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   display: flex;
+  flex-grow: 1;
+  min-height: 100vh;
   flex-direction: column;
-  justify-content: flex-end;
   align-items: center;
   background-color: var(--primary-background-color);
-  overflow: auto;
+  // overflow-y: auto;
 }
 
 .content {
   display: flex;
+  flex-grow: 1;
   justify-content: center;
   align-items: center;
   flex: 1;

@@ -1,29 +1,39 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { privateRoute, publicRoute } from './routes/dashboardRoutes';
-import DashboardLayout from './layout/defaultLayout/Dashboard';
+import { PersistGate } from 'redux-persist/integration/react';
+import DashboardLayout from './layout/Dashboard';
+import { publicRoutes } from './routes/dashboardRoutes';
 import OnepageLayout from './layout/OnepageLayout/OnepageLayout';
+import DefaultLayout from './layout/defaultLayout/DefaultLayout';
+import { Provider } from 'react-redux';
+
+import { store, persistor } from './store/store';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        {publicRoute.map((route, index) => {
-          const Layout = route.layout === OnepageLayout ? OnepageLayout : DashboardLayout;
-          const Page = route.component;
-          return (
-            <Route
-              key={index}
-              path={route.path}
-              element={
-                <Layout>
-                  <Page />
-                </Layout>
-              }
-            />
-          );
-        })}
-      </Routes>
-    </Router>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <Router>
+          <Routes>
+            {publicRoutes.map((route) => {
+              const Layout = route.layout === OnepageLayout ? OnepageLayout : DefaultLayout;
+              const Page = route.component;
+              return (
+                <Route
+                  key={route.path}
+                  path={route.path}
+                  element={
+                    <Layout>
+                      <Page />
+                    </Layout>
+                  }
+                />
+              );
+            })}
+            <Route path="*" element={<DashboardLayout />} />;
+          </Routes>
+        </Router>
+      </PersistGate>
+    </Provider>
   );
 }
 

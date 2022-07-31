@@ -82,7 +82,7 @@ function Search() {
     if (searchResult.length > 0) {
       return searchResult.map((data) => {
         return loading ? (
-          <FontAwesomeIcon className={cx('loading-resultbar')} icon={faSpinner} />
+          <FontAwesomeIcon key={data.id} className={cx('loading-resultbar')} icon={faSpinner} />
         ) : (
           <AccountItems key={data.id} searchData={data} />
         );

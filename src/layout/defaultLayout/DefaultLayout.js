@@ -1,10 +1,11 @@
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './defaultLayout.module.scss';
 import Header from '../../components/Header/Header.js';
 
 const cx = classNames.bind(styles);
 
-function DashboardLayout({ children }) {
+function DefaultLayout({ children }) {
   return (
     <>
       <Header />
@@ -13,4 +14,8 @@ function DashboardLayout({ children }) {
   );
 }
 
-export default DashboardLayout;
+DefaultLayout.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export default DefaultLayout;

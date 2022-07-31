@@ -7,13 +7,13 @@ import OnepageLayout from '../layout/OnepageLayout/OnepageLayout.js';
 
 import { ROUTES } from '../config/routes';
 
-const publicRoute = [
+const privateRoutes = [
   {
     path: ROUTES.HOME,
     component: Home,
   },
   {
-    path: '/@:nickname',
+    path: '/:nickname',
     component: Profile,
   },
   {
@@ -21,6 +21,9 @@ const publicRoute = [
     component: Setting,
     layout: OnepageLayout,
   },
+];
+
+const publicRoutes = [
   {
     path: ROUTES.LOGIN,
     component: LoginLayout,
@@ -32,6 +35,5 @@ const publicRoute = [
     layout: OnepageLayout,
   },
 ];
-const privateRoute = [];
 
-export { privateRoute, publicRoute };
+export { privateRoutes, publicRoutes };

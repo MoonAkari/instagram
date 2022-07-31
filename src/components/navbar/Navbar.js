@@ -23,7 +23,7 @@ function Navbar({ setAuthenticated }) {
   const renderNavBar = () => {
     return NAVBAR_ROUTES.map((icon, index) => {
       return (
-        <Button key={index} to={icon.to} icon className={cx('navbar-icon')}>
+        <Button key={icon.name} to={icon.to} icon className={cx('navbar-icon')}>
           {icon.icon}
         </Button>
       );
@@ -34,7 +34,7 @@ function Navbar({ setAuthenticated }) {
     return MENU_ITEMS.map((item, index) => {
       return (
         <MenuItem
-          key={index}
+          key={item.title}
           item={item}
           onClick={() => {
             setVisible(false);
