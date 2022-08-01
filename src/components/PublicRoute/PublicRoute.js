@@ -5,13 +5,13 @@ import { useSelector } from 'react-redux';
 import { ROUTES } from '../../config/routes';
 import { selectLoginStatus } from '../../store/selector';
 
-function PrivateRoute({ children }) {
+function PublicRoute({ children }) {
   let authenticated = useSelector(selectLoginStatus);
-  return authenticated ? children : <Navigate to={ROUTES.LOGIN} replace />;
+  return authenticated ? <Navigate to={ROUTES.HOME} replace /> : children;
 }
 
-PrivateRoute.propTypes = {
+PublicRoute.propTypes = {
   children: PropTypes.node.isRequired,
 };
 
-export default PrivateRoute;
+export default PublicRoute;

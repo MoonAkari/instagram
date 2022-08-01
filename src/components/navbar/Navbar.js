@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './Navbar.module.scss';
 import Tippy from '@tippyjs/react/headless';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 import { MENU_ITEMS, NAVBAR_ROUTES } from './navigationRoutes';
@@ -10,18 +10,28 @@ import Popover from '../popover/Popover';
 import { useState } from 'react';
 import Button from '../button/Button';
 import Image from '../../components/Image/Image';
+import { setLogoutSuccess } from '../../store/auth/action';
+import { persistor } from '../../store/store';
 
 const cx = classNames.bind(styles);
 
-function Navbar({ setAuthenticated }) {
+function Navbar() {
   const [visible, setVisible] = useState(false);
   const { pathname } = useLocation();
+
+  const dispatch = useDispatch();
 
   const show = () => setVisible(true);
   const hide = () => setVisible(false);
 
+  const handleLogout = () => {
+    persistor.purge();
+    localStorage.removeItem('persist:root');
+    dispatch(setLogoutSuccess(false));
+  };
+
   const renderNavBar = () => {
-    return NAVBAR_ROUTES.map((icon, index) => {
+    return NAVBAR_ROUTES.map((icon) => {
       return (
         <Button key={icon.name} to={icon.to} icon className={cx('navbar-icon')}>
           {icon.icon}
@@ -31,14 +41,14 @@ function Navbar({ setAuthenticated }) {
   };
 
   const renderMenuItem = () => {
-    return MENU_ITEMS.map((item, index) => {
+    return MENU_ITEMS.map((item) => {
       return (
         <MenuItem
           key={item.title}
           item={item}
           onClick={() => {
             setVisible(false);
-            if (item.title === 'Log Out') setAuthenticated(false);
+            if (item.title === 'Log Out') handleLogout();
           }}
         />
       );
@@ -73,9 +83,5 @@ function Navbar({ setAuthenticated }) {
     </nav>
   );
 }
-
-Navbar.propTypes = {
-  setAuthenticated: PropTypes.func.isRequired,
-};
 
 export default Navbar;

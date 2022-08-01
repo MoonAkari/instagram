@@ -4,7 +4,6 @@ import Setting from '../pages/Setting/Setting';
 import LoginLayout from '../pages/Authentication/Login';
 import RegisterLayout from '../pages/Authentication/Register';
 import OnepageLayout from '../layout/OnepageLayout/OnepageLayout.js';
-
 import { ROUTES } from '../config/routes';
 
 const privateRoutes = [

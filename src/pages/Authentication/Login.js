@@ -1,23 +1,26 @@
-import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './style.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import images from '../../assets/image/image';
 import Button from '../../components/button/Button';
 import { setLoginSuccess } from '../../store/auth/action';
+import { ROUTES } from '../../config/routes';
 
 const cx = classNames.bind(styles);
 
 function LoginLayout() {
   const [usernameValue, setUsernameValue] = useState('');
   const [pwdValue, setPwdValue] = useState('');
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleLogin = () => {
+    navigate(ROUTES.HOME, { replace: true });
     dispatch(setLoginSuccess(true));
   };
 

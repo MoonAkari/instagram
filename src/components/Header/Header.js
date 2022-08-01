@@ -1,16 +1,17 @@
 import classNames from 'classnames/bind';
 import styles from './Header.module.scss';
+import { useSelector } from 'react-redux';
 
 import images from '../../assets/image/image';
 import Button from '../button/Button';
 import NavBar from '../navbar/Navbar';
 import Search from '../Search/Search';
-import { useState } from 'react';
+import { selectLoginStatus } from '../../store/selector';
 
 const cx = classNames.bind(styles);
 
 function Header() {
-  const [authenticated, setAuthenticated] = useState('true');
+  let authenticated = useSelector(selectLoginStatus);
 
   return (
     <header className={cx('header')}>
@@ -25,10 +26,10 @@ function Header() {
 
         <div className={cx('nav-bar')}>
           {authenticated ? (
-            <NavBar setAuthenticated={() => setAuthenticated()} />
+            <NavBar />
           ) : (
             <>
-              <Button primary small onClick={() => setAuthenticated(true)}>
+              <Button primary small>
                 Log in
               </Button>
               <Button text>Sign up</Button>

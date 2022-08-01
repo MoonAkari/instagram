@@ -1,8 +1,10 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { privateRoutes } from '../routes/dashboardRoutes';
+
 import PrivateRoute from '../components/PrivateRoute/PrivateRoute';
 import DefaultLayout from './defaultLayout/DefaultLayout';
 import OnepageLayout from './OnepageLayout/OnepageLayout';
+import NotFound from '../pages/NotFound/NotFound';
 
 function DashboardLayout() {
   return (
@@ -24,6 +26,7 @@ function DashboardLayout() {
           />
         );
       })}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
