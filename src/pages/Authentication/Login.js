@@ -4,23 +4,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookSquare } from '@fortawesome/free-brands-svg-icons';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 import images from '../../assets/image/image';
 import Button from '../../components/button/Button';
 import { setLoginSuccess } from '../../store/auth/action';
-import { ROUTES } from '../../config/routes';
 
 const cx = classNames.bind(styles);
 
 function LoginLayout() {
   const [usernameValue, setUsernameValue] = useState('');
   const [pwdValue, setPwdValue] = useState('');
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleLogin = () => {
-    navigate(ROUTES.HOME, { replace: true });
     dispatch(setLoginSuccess(true));
   };
 
@@ -97,6 +93,27 @@ function LoginLayout() {
 
         <div className={cx('getapp')}>
           <label>Get the app.</label>
+          <div className={cx('app')}>
+            <Button text href="https://www.apple.com/services/">
+              <img
+                className={cx('app-image')}
+                alt="App Store"
+                src="https://www.instagram.com/static/images/appstore-install-badges/badge_ios_english-en.png/180ae7a0bcf7.png"
+                style={{ width: `136px`, height: '40px' }}
+              />
+            </Button>
+            <Button
+              text
+              href="https://play.google.com/store/apps/details?id=com.instagram.android&referrer=utm_source%3Dinstagramweb%26utm_campaign%3DloginPage%26ig_mid%3D3CF5831F-ADC6-4F1A-9497-390D60C16F05%26utm_content%3Dlo%26utm_medium%3Dbadge"
+            >
+              <img
+                className={cx('app-image')}
+                alt="Google Play"
+                src="https://www.instagram.com/static/images/appstore-install-badges/badge_android_english-en.png/e9cd846dc748.png"
+                style={{ width: `136px`, height: '40px' }}
+              />
+            </Button>
+          </div>
         </div>
       </div>
     </>

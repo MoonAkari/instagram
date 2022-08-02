@@ -12,7 +12,7 @@ const privateRoutes = [
     component: Home,
   },
   {
-    path: '/:nickname',
+    path: '/@:profile',
     component: Profile,
   },
   {

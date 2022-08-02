@@ -25,46 +25,33 @@
 //Post: Root/p/id/
 [
   {
-    userId: 1,
     id: 1,
-    title: 'sunt aut facere repellat provident occaecati excepturi optio reprehenderit',
-    image: 'https://files.fullstack.edu.vn/f8-tiktok/users/1/6273950c4889b.jpg',
-    body: 'quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto',
-    comment: [
-      {
-        UserId: 3,
-        id: 1,
-        name: 'id labore ex et quam laborum',
-        email: 'Eliseo@gardner.biz',
-        body: 'laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium',
-      },
-      {
-        UserId: 4,
-        id: 2,
-        name: 'quo vero reiciendis velit similique earum',
-        email: 'Jayne_Kuhic@sydney.com',
-        body: 'est natus enim nihil est dolore omnis voluptatem numquam\net omnis occaecati quod ullam at\nvoluptatem error expedita pariatur\nnihil sint nostrum voluptatem reiciendis et',
-      },
-    ],
+    user_id: 1000,
+    likes_count: 6,
+    cmt_count: 5,
+    title: 'Đồ án times',
+    image:
+      'https://scontent.fsgn2-4.fna.fbcdn.net/v/t1.6435-9/81172370_2628303377260673_4951614233021251584_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=730e14&_nc_ohc=B3iBJs6CAwUAX8IwZO2&_nc_ht=scontent.fsgn2-4.fna&oh=00_AT958DV1swmQe6Tr6omtIplsIx8A-WnZJInKUXNipOew9w&oe=62FF3793',
+    created_at: '2022-05-05 15:34:44',
   },
 ];
 
 //Comment: Root/cmt/id
 [
   {
-    UserId: 3,
-    postId: 1,
     id: 1,
-    name: 'id labore ex et quam laborum',
-    email: 'Eliseo@gardner.biz',
-    body: 'laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium',
+    user_id: 100,
+    post_id: 1,
+    body: 'uây cái thước xanh lá mua từ năm 11 tới giờ chưa xài nè, còn nguyên bọc luôn nheeeeeeeeee. Hông bảo tặng lại cho :v',
+    likes_count: 1,
+    liked: true,
   },
   {
-    UserId: 4,
-    postId: 1,
     id: 2,
-    name: 'quo vero reiciendis velit similique earum',
-    email: 'Jayne_Kuhic@sydney.com',
-    body: 'est natus enim nihil est dolore omnis voluptatem numquam\net omnis occaecati quod ullam at\nvoluptatem error expedita pariatur\nnihil sint nostrum voluptatem reiciendis et',
+    user_id: 101,
+    post_id: 1,
+    body: 'đi ĐS rất không rủ ??',
+    likes_count: 1,
+    liked: true,
   },
 ];

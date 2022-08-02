@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { privateRoutes } from '../routes/dashboardRoutes';
 
 import PrivateRoute from '../components/PrivateRoute/PrivateRoute';
@@ -26,7 +26,7 @@ function DashboardLayout() {
           />
         );
       })}
-      <Route path="*" element={<NotFound />} />
+      <Route element={<NotFound />} />
     </Routes>
   );
 }

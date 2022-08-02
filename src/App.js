@@ -33,8 +33,8 @@ function App() {
                 />
               );
             })}
-            <Route path="/" element={<DashboardLayout />} />;
-            <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<DashboardLayout />} />;
+            <Route element={<NotFound />} />;
           </Routes>
         </Router>
       </PersistGate>
