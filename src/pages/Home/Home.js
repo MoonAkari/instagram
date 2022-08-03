@@ -1,14 +1,26 @@
 import classNames from 'classnames/bind';
 import styles from './Home.module.scss';
+import { useSelector } from 'react-redux';
 
 import Image from '../../components/Image/Image';
 import Post from '../../components/post/Post';
 import SideBar from '../../components/sidebar/SideBar';
+import { postsInfo, selectCurrentUser } from '../../store/selector';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { getPost } from '../../store/posts/action';
 
 const cx = classNames.bind(styles);
 
 function Home() {
   let isStories = true;
+  const posts = useSelector(postsInfo);
+  const currentUser = useSelector(selectCurrentUser);
+  const dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(getPost());
+  // }, [dispatch]);
 
   return (
     <div className={cx('container')}>
@@ -29,7 +41,9 @@ function Home() {
           </div>
         )}
 
-        <Post />
+        {posts.map((post) => (
+          <Post key={post.id} data={post} currentUser={currentUser} />
+        ))}
       </div>
       <aside className={cx('sidebar')}>
         <SideBar />

@@ -17,7 +17,7 @@ const initialState = [
     likes_count: 14, //post
     followed: true,
     follow_you: true,
-    is_friend: true,
+    is_followed: true,
     status: 'Followed by ',
     website_url: 'https://fullstack.edu.vn/',
     instagram_url: 'https://www.instagram.com/lamtran_1/',
@@ -39,7 +39,7 @@ const initialState = [
     likes_count: 1, //post
     followed: false,
     follow_you: false,
-    is_friend: false,
+    is_followed: false,
     status: '',
     website_url: 'https://fullstack.edu.vn/',
     instagram_url: 'https://www.instagram.com/ozunukim/',
@@ -51,10 +51,11 @@ const initialState = [
 const usersReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(TYPE.GET_USER, (state, action) => {})
-    .addCase(TYPE.UNFOLLOW_USER, (state, action) => {})
-    .addDefaultCase((state, action) => {
-      // state.followed = action.payload;
-    });
+    .addCase(TYPE.UNFOLLOW_USER, (state, action) => {
+      const currentUser = state.find((user) => user.id == action.payload);
+      currentUser.is_followed = false;
+    })
+    .addDefaultCase((state, action) => {});
 });
 
 export default usersReducer;

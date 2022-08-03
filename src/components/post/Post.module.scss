@@ -117,7 +117,7 @@
   margin-bottom: 4px;
 
   & .id-status,
-  .id-comment {
+  & .id-comment {
     display: inline-block;
   }
 
@@ -135,7 +135,7 @@
   margin-bottom: 8px;
 }
 
-.load-more {
+.load-all {
   margin-bottom: 8px;
   color: var(--fade-text-color) !important;
   font-weight: 400 !important;

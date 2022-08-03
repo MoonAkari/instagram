@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 import styles from './SideBar.module.scss';
 import React, { useEffect, useState } from 'react';
 
-import { FOOTER_ITEMS } from './FooterLinks';
+import { FOOTER_ITEMS } from './footerLinks';
 import Image from '../Image/Image';
 import Button from '../button/Button';
 import SidebarItems from './Items';

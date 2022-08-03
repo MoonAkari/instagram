@@ -55,6 +55,11 @@ function Search() {
     setVisible(false);
   };
 
+  const handleClickResult = () => {
+    setVisible(false);
+    setInputValue('');
+  };
+
   //Handle display Recent search
   const RecentSearch = () => {
     return (
@@ -66,9 +71,7 @@ function Search() {
 
         {recentData.length > 0 ? (
           recentData.map((recentData) => {
-            return (
-              <AccountItems key={recentData.id} recentData={recentData} closeBtn onClick={() => setVisible(false)} />
-            );
+            return <AccountItems key={recentData.id} recentData={recentData} closeBtn onClick={handleClickResult} />;
           })
         ) : (
           <div className={cx('fallback')}>No recent searches.</div>
@@ -84,7 +87,7 @@ function Search() {
         return loading ? (
           <FontAwesomeIcon key={data.id} className={cx('loading-resultbar')} icon={faSpinner} />
         ) : (
-          <AccountItems key={data.id} searchData={data} />
+          <AccountItems key={data.id} searchData={data} onClick={handleClickResult} />
         );
       });
     } else {

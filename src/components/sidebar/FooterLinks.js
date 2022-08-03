@@ -30,7 +30,7 @@ export const FOOTER_ITEMS = [
     underline: true,
   },
   {
-    content: 'Term',
+    content: 'Terms',
     href: 'https://help.instagram.com/581066165581870',
     underline: true,
   },

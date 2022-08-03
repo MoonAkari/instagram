@@ -4,19 +4,54 @@ import styles from './Post.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faComment, faPaperPlane, faBookmark, faFaceSmile } from '@fortawesome/free-regular-svg-icons';
 import { faEllipsis, faHeart as heartFill, faBookmark as bookmarkFill } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import Image from '../Image/Image';
 import Button from '../button/Button';
-import { useState } from 'react';
+import { setLikeStatus, setBookmarkStatus, addComment } from '../../store/posts/action';
 
 const cx = classNames.bind(styles);
 
-function Post({ data, className }) {
-  const [liked, setLiked] = useState(false);
-  const [bookmarked, setBookmarked] = useState(false);
+function Post({ data, currentUser, className }) {
+  const [like, setLike] = useState(data.liked);
+  const [likeCmt, setLikeCmt] = useState(data.comments.liked);
+  const [bookmarked, setBookmarked] = useState(data.bookmarked);
   const [commentValue, setCommentValue] = useState('');
-
+  const dispatch = useDispatch();
   let classes = cx('wrapper', { [className]: className });
+
+  const handleLike = () => {
+    setLike(!like);
+    dispatch(
+      setLikeStatus({
+        id: data.id,
+        liked: !like,
+      }),
+    );
+  };
+
+  const handleBookmark = () => {
+    setBookmarked(!bookmarked);
+    dispatch(
+      setBookmarkStatus({
+        id: data.id,
+        bookmarked: !bookmarked,
+      }),
+    );
+  };
+
+  const handleAddCmt = () => {
+    dispatch(
+      addComment({
+        postId: data.id,
+        user_id: 1000,
+        current_user: currentUser.name,
+        content: commentValue,
+      }),
+    );
+    setCommentValue('');
+  };
 
   return (
     <div className={classes}>
@@ -24,15 +59,15 @@ function Post({ data, className }) {
         <Image
           className={cx('avatar')}
           src="https://scontent.fsgn15-1.fna.fbcdn.net/v/t1.6435-9/132297550_3543582379066097_1314718618935596856_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=BbSRsxJCfzIAX8k3AJO&_nc_ht=scontent.fsgn15-1.fna&oh=00_AT_EDz5SAF6PqcUqBy_O5a-ZUW_R78FsCX0TFCfBHCN4DQ&oe=62F3237D"
-          to="/@monmotion"
+          to={`/@${data.user_nickname}`}
           alt="avatar"
           width="32px"
           height="32px"
           circle
         />
         <div className={cx('id-name')}>
-          <Button text to="/@monmotion">
-            monmotion
+          <Button text to={`/@${data.user_nickname}`}>
+            {data.user_nickname}
           </Button>
         </div>
         <Button icon>
@@ -41,23 +76,18 @@ function Post({ data, className }) {
       </header>
 
       <div className={cx('image')}>
-        <Image
-          src="https://scontent.fsgn2-4.fna.fbcdn.net/v/t1.6435-9/81172370_2628303377260673_4951614233021251584_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=730e14&_nc_ohc=B3iBJs6CAwUAX8IwZO2&_nc_ht=scontent.fsgn2-4.fna&oh=00_AT958DV1swmQe6Tr6omtIplsIx8A-WnZJInKUXNipOew9w&oe=62FF3793"
-          alt="post"
-          width="100%"
-          height="100%"
-        />
+        <Image src={data.image} alt="post" width="100%" height="100%" />
       </div>
 
       <div className={cx('content')}>
         <section className={cx('action-bar')}>
           <div className={cx('action-left')}>
-            {!liked ? (
-              <Button icon className={cx('action-icon')} onClick={() => setLiked(!liked)}>
+            {!like ? (
+              <Button icon className={cx('action-icon')} onClick={handleLike}>
                 <FontAwesomeIcon icon={faHeart} />
               </Button>
             ) : (
-              <Button icon className={cx('action-icon-active')} onClick={() => setLiked(!liked)}>
+              <Button icon className={cx('action-icon-active')} onClick={handleLike}>
                 <FontAwesomeIcon icon={heartFill} className={cx('hear-fill')} />
               </Button>
             )}
@@ -70,36 +100,47 @@ function Post({ data, className }) {
             </Button>
           </div>
 
-          <div className={cx('action-right')} onClick={() => setBookmarked(!bookmarked)}>
+          <div className={cx('action-right')}>
             {!bookmarked ? (
-              <Button icon className={cx('action-icon')}>
+              <Button icon className={cx('action-icon')} onClick={handleBookmark}>
                 <FontAwesomeIcon icon={faBookmark} />
               </Button>
             ) : (
-              <Button icon className={cx('action-icon-active')}>
+              <Button icon className={cx('action-icon-active')} onClick={handleBookmark}>
                 <FontAwesomeIcon icon={bookmarkFill} />
               </Button>
             )}
           </div>
         </section>
 
-        <section className={cx('liked-bar')}>
-          <Image
-            src="https://scontent.fsgn15-1.fna.fbcdn.net/v/t1.6435-9/132297550_3543582379066097_1314718618935596856_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=BbSRsxJCfzIAX8k3AJO&_nc_ht=scontent.fsgn15-1.fna&oh=00_AT_EDz5SAF6PqcUqBy_O5a-ZUW_R78FsCX0TFCfBHCN4DQ&oe=62F3237D"
-            alt="avatar"
-            circle
-            width="20px"
-            height="20px"
-          />
-          <div className={cx('description')}>
-            &nbsp;Liked by&nbsp;
-            <Button text underline to="/@kuroyuki_jane">
-              kuroyuki_jane
-            </Button>
-            &nbsp;and&nbsp;
-            <Button text>6 others</Button>
-          </div>
-        </section>
+        {data.likes_count ? (
+          <section className={cx('liked-bar')}>
+            <Image
+              src="https://scontent.fsgn15-1.fna.fbcdn.net/v/t1.6435-9/132297550_3543582379066097_1314718618935596856_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=BbSRsxJCfzIAX8k3AJO&_nc_ht=scontent.fsgn15-1.fna&oh=00_AT_EDz5SAF6PqcUqBy_O5a-ZUW_R78FsCX0TFCfBHCN4DQ&oe=62F3237D"
+              alt="avatar"
+              circle
+              width="20px"
+              height="20px"
+            />
+            <div className={cx('description')}>
+              &nbsp;Liked by&nbsp;
+              {data.liked ? (
+                <Button text underline to={`/@${data.user_nickname}`}>
+                  You,&nbsp;
+                </Button>
+              ) : (
+                <></>
+              )}
+              <Button text underline to="/@kuroyuki_jane" style={{ margin: '0' }}>
+                kuroyuki_jane
+              </Button>
+              &nbsp;and&nbsp;
+              <Button text>{data.likes_count} others</Button>
+            </div>
+          </section>
+        ) : (
+          <></>
+        )}
 
         <div className={cx('content-bar')}>
           <div className={cx('status')}>
@@ -107,38 +148,33 @@ function Post({ data, className }) {
               <Button text underline to="/@monmotion/" className={cx('id-status')}>
                 monmotion&nbsp;
               </Button>
-              <span>Đồ án times</span>
+              <span className={cx('status-content')}>{data.title}</span>
             </div>
           </div>
 
-          <Button className={cx('load-more')}>View all 5 comments</Button>
+          {data.comments.length > 2 ? (
+            <Button className={cx('load-all')}>View all {data.comments.length} comments</Button>
+          ) : (
+            <></>
+          )}
           <div className={cx('comment-content')}>
-            <div className={cx('comment')}>
-              <div>
-                <Button text underline to="/@lamtran_1/" className={cx('id-comment')}>
-                  lamtran_1&nbsp;
-                </Button>
-                <span>
-                  Ủa đi in chi ngta chỉ cho k in đòi về vẽ ngựa ngựa Ủa đi in chi ngta chỉ cho k in đòi về vẽ ngựa ngựa
-                  Ủa đi in chi ngta chỉ cho k in đòi về vẽ ngựa ngựa
-                </span>
-              </div>
-              <Button icon className={cx('like-comment')}>
-                <FontAwesomeIcon icon={faHeart} />
-              </Button>
-            </div>
-
-            <div className={cx('comment')}>
-              <div>
-                <Button text underline to="/@thaochoach15/" className={cx('id-comment')}>
-                  thaochoach15&nbsp;
-                </Button>
-                <span>đi ĐS rất không rủ </span>
-              </div>
-              <Button icon className={cx('like-comment')}>
-                <FontAwesomeIcon icon={faHeart} />
-              </Button>
-            </div>
+            {data.comments ? (
+              data.comments.map((comment) => (
+                <div className={cx('comment')} key={comment.id}>
+                  <div>
+                    <Button text underline to={`/@${comment.user_nickname}`} className={cx('id-comment')}>
+                      {comment.user_nickname}&nbsp;
+                    </Button>
+                    <span>{comment.body}</span>
+                  </div>
+                  <Button icon className={cx('like-comment')}>
+                    <FontAwesomeIcon icon={faHeart} />
+                  </Button>
+                </div>
+              ))
+            ) : (
+              <></>
+            )}
           </div>
         </div>
 
@@ -152,11 +188,12 @@ function Post({ data, className }) {
       <div className={cx('comment-box')}>
         <FontAwesomeIcon icon={faFaceSmile} className={cx('emotion-btn')} />
         <input
+          value={commentValue}
           onChange={(e) => setCommentValue(e.target.value)}
           placeholder="Add a comment..."
           className={cx('comment-input')}
         />
-        <Button disable={commentValue ? false : true} text className={cx('post-btn')}>
+        <Button onClick={handleAddCmt} disable={commentValue ? false : true} text className={cx('post-btn')}>
           Post
         </Button>
       </div>
@@ -165,7 +202,8 @@ function Post({ data, className }) {
 }
 
 Post.propTypes = {
-  data: PropTypes.node,
+  data: PropTypes.object,
+  currentUser: PropTypes.object,
   className: PropTypes.string,
 };
 

@@ -17,7 +17,7 @@ function LoginLayout() {
   const dispatch = useDispatch();
 
   const handleLogin = () => {
-    dispatch(setLoginSuccess(true));
+    if (!usernameValue && !usernameValue) dispatch(setLoginSuccess(true));
   };
 
   const handleUsernameInput = (e) => {
