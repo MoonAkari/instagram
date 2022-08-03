@@ -180,3 +180,9 @@
   display: flex;
   margin: 10px 0;
 }
+
+@media (max-width: 54.7em) {
+  .side-image {
+    display: none;
+  }
+}

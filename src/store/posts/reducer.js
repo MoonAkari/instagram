@@ -28,7 +28,7 @@ const initialState = [
         id: 2,
         user_id: 104,
         user_nickname: 'thaochoach15',
-        liked: true,
+        liked: false,
         likes_count: 1,
         body: 'đi ĐS rất không rủ',
       },
@@ -56,14 +56,21 @@ const postsReducer = createReducer(initialState, (builder) => {
       const currentLike = state.find((post) => post.id === action.payload.id);
       currentLike.liked = action.payload.liked;
     })
+    .addCase(TYPE.SET_LIKE_COMMENT, (state, action) => {
+      const parentPost = state.find((post) => post.id === action.payload.id);
+      if (parentPost) {
+        const currentCommentLike = parentPost.comments.find((comment) => comment.id === action.payload.comments.id);
+        currentCommentLike.liked = !currentCommentLike.liked;
+      }
+    })
     .addCase(TYPE.SET_BOOKMARK, (state, action) => {
       const currentBookmark = state.find((post) => post.id === action.payload.id);
       currentBookmark.bookmarked = action.payload.bookmarked;
     })
     .addCase(TYPE.ADD_A_COMMENT, (state, action) => {
-      var parentPost = state.find((post) => post.id === action.payload.postId);
+      const parentPost = state.find((post) => post.id === action.payload.postId);
       if (parentPost) {
-        let lastChild = parentPost.comments.length - 1;
+        const lastChild = parentPost.comments.length - 1;
         const nextCommentId = parentPost.comments[lastChild].id + 1;
         parentPost.comments.push({
           id: nextCommentId,

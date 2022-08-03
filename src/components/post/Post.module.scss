@@ -129,6 +129,18 @@
     font-size: 12px;
     height: 100%;
   }
+
+  & .like-comment-active {
+    font-size: 12px;
+    height: 100%;
+  }
+
+  .hear-fill {
+    font-size: 12px;
+    color: var(--heart-fill);
+    cursor: pointer;
+    animation: intro 0.3s ease;
+  }
 }
 
 .status {

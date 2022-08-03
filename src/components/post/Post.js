@@ -9,13 +9,12 @@ import { useDispatch } from 'react-redux';
 
 import Image from '../Image/Image';
 import Button from '../button/Button';
-import { setLikeStatus, setBookmarkStatus, addComment } from '../../store/posts/action';
+import { setLikeStatus, setBookmarkStatus, addComment, setLikeCommentStatus } from '../../store/posts/action';
 
 const cx = classNames.bind(styles);
 
 function Post({ data, currentUser, className }) {
   const [like, setLike] = useState(data.liked);
-  const [likeCmt, setLikeCmt] = useState(data.comments.liked);
   const [bookmarked, setBookmarked] = useState(data.bookmarked);
   const [commentValue, setCommentValue] = useState('');
   const dispatch = useDispatch();
@@ -27,6 +26,17 @@ function Post({ data, currentUser, className }) {
       setLikeStatus({
         id: data.id,
         liked: !like,
+      }),
+    );
+  };
+
+  const handleLikeComment = (commentId) => {
+    dispatch(
+      setLikeCommentStatus({
+        id: data.id,
+        comments: {
+          id: commentId,
+        },
       }),
     );
   };
@@ -167,9 +177,15 @@ function Post({ data, currentUser, className }) {
                     </Button>
                     <span>{comment.body}</span>
                   </div>
-                  <Button icon className={cx('like-comment')}>
-                    <FontAwesomeIcon icon={faHeart} />
-                  </Button>
+                  {!comment.liked ? (
+                    <Button icon className={cx('like-comment')} onClick={() => handleLikeComment(comment.id)}>
+                      <FontAwesomeIcon icon={faHeart} />
+                    </Button>
+                  ) : (
+                    <Button icon className={cx('like-comment-active')} onClick={() => handleLikeComment(comment.id)}>
+                      <FontAwesomeIcon icon={heartFill} className={cx('hear-fill')} />
+                    </Button>
+                  )}
                 </div>
               ))
             ) : (
@@ -190,6 +206,9 @@ function Post({ data, currentUser, className }) {
         <input
           value={commentValue}
           onChange={(e) => setCommentValue(e.target.value)}
+          onKeyPress={(e) => {
+            if (e.key === 'Enter') handleAddCmt();
+          }}
           placeholder="Add a comment..."
           className={cx('comment-input')}
         />

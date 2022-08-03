@@ -4,5 +4,6 @@ export const EDIT_POST = 'EDIT_POST';
 export const DELETE_POST = 'DELETE_POST';
 
 export const SET_LIKE = 'SET_LIKE';
+export const SET_LIKE_COMMENT = 'SET_LIKE_COMMENT';
 export const SET_BOOKMARK = 'SET_BOOKMARK';
 export const ADD_A_COMMENT = 'ADD_A_COMMENT';

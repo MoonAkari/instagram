@@ -36,6 +36,8 @@
   position: relative;
   display: flex;
   flex: 1;
+  max-width: 268px;
+  width: 100%;
   justify-content: center;
 }
 
@@ -43,4 +45,11 @@
   flex: 1;
   display: flex;
   justify-content: flex-end;
+  padding-left: 24px;
+}
+
+@media (max-width: 40em) {
+  .search-bar-box {
+    display: none;
+  }
 }
