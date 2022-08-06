@@ -1,22 +1,6 @@
 import * as TYPE from './types';
 import { createAction } from '@reduxjs/toolkit';
-import { getSearch } from '../../services/apiServices';
 
-export const getSuggBar = async () => {
-  try {
-    const apiData = {
-      method: 'get',
-      endpoint: '/users/search',
-      data: {},
-      params: {
-        q: 'n',
-        type: 'less',
-      },
-    };
-    const res = await apiAction(apiData);
-    const userArrayObject = [...res.data];
-    return userArrayObject;
-  } catch (error) {
-    console.log(error);
-  }
-};
+export const getUserByPathname = createAction(TYPE.GET_USER_BY_NAME);
+export const getUserList = createAction(TYPE.GET_USER_LIST);
+export const setFollowStatus = createAction(TYPE.TRIGGER_FOLLOW_USER);

@@ -10,6 +10,7 @@ import Popover from '../popover/Popover';
 import AccountItems from '../accountItems/AccountItems';
 import useDebounce from '../../hooks/useDebounce';
 import { fetchUsersBySearch, setEmptySearchTerm } from '../../store/usersAPI/action';
+import { getUserSelected } from '../../store/userSelected/action';
 import { selectUsersFromApi } from '../../store/selector';
 
 const cx = classNames.bind(styles);
@@ -58,7 +59,8 @@ function Search() {
     setVisible(false);
   };
 
-  const handleClickResult = () => {
+  const handleClickResult = (userData) => {
+    dispatch(getUserSelected(userData));
     setVisible(false);
     setInputValue('');
   };
@@ -82,8 +84,15 @@ function Search() {
         </div>
 
         {recentData.length > 0 ? (
-          recentData.map((recentData) => {
-            return <AccountItems key={recentData.id} recentData={recentData} closeBtn onClick={handleClickResult} />;
+          recentData.map((recentSearch) => {
+            return (
+              <AccountItems
+                key={recentSearch.id}
+                recentData={recentSearch}
+                closeBtn
+                onClick={() => handleClickResult(recentSearch)}
+              />
+            );
           })
         ) : (
           <div className={cx('fallback')}>No recent searches.</div>
@@ -95,11 +104,11 @@ function Search() {
   //Handle display search result
   const SearchResultComp = () => {
     if (usersFromApi.listUsers.length > 0) {
-      return usersFromApi.listUsers.map((data) => {
+      return usersFromApi.listUsers.map((searchUser) => {
         return usersFromApi.loading ? (
-          <FontAwesomeIcon key={data.id} className={cx('loading-resultbar')} icon={faSpinner} />
+          <FontAwesomeIcon key={searchUser.id} className={cx('loading-resultbar')} icon={faSpinner} />
         ) : (
-          <AccountItems key={data.id} searchData={data} onClick={handleClickResult} />
+          <AccountItems key={searchUser.id} searchData={searchUser} onClick={() => handleClickResult(searchUser)} />
         );
       });
     } else {

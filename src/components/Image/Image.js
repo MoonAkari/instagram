@@ -62,7 +62,7 @@ Image.propTypes = {
   circle: PropTypes.bool,
   children: PropTypes.node,
   className: PropTypes.string,
-  src: PropTypes.string.isRequired,
+  src: PropTypes.string,
   onClick: PropTypes.func,
   disable: PropTypes.bool,
 };

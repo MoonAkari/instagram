@@ -19,7 +19,7 @@ const initialState = [
       {
         id: 1,
         user_id: 103,
-        user_nickname: 'mied_diem',
+        user_nickname: 'mied_',
         liked: true,
         likes_count: 1,
         body: 'uây cái thước xanh lá mua từ năm 11 tới giờ chưa xài nè, còn nguyên bọc luôn nheeeeeeeeee. Hông bảo tặng lại cho :v',
@@ -27,7 +27,7 @@ const initialState = [
       {
         id: 2,
         user_id: 104,
-        user_nickname: 'thaochoach15',
+        user_nickname: 'thao15',
         liked: false,
         likes_count: 1,
         body: 'đi ĐS rất không rủ',

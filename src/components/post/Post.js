@@ -155,8 +155,8 @@ function Post({ data, currentUser, className }) {
         <div className={cx('content-bar')}>
           <div className={cx('status')}>
             <div>
-              <Button text underline to="/@monmotion/" className={cx('id-status')}>
-                monmotion&nbsp;
+              <Button text underline to={`/@${data.user_nickname}`} className={cx('id-status')}>
+                {data.user_nickname}&nbsp;
               </Button>
               <span className={cx('status-content')}>{data.title}</span>
             </div>

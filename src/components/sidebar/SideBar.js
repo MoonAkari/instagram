@@ -2,11 +2,13 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './SideBar.module.scss';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { FOOTER_ITEMS } from './FooterLinks';
 import Image from '../Image/Image';
 import Button from '../button/Button';
 import SidebarItems from './Items';
+import { getUserSelected } from '../../store/userSelected/action';
 import * as apiServices from '../../services/apiServices';
 
 const cx = classNames.bind(styles);
@@ -15,6 +17,7 @@ function SideBar({ data, className }) {
   let classes = cx('wrapper', { [className]: className });
 
   const [suggestResult, setsuggestResult] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchApi = async () => {
@@ -24,10 +27,14 @@ function SideBar({ data, className }) {
     fetchApi();
   }, []);
 
+  const handleClickItem = (userData) => {
+    dispatch(getUserSelected(userData));
+  };
+
   const renderSuggestItem = () => {
     return suggestResult.map((item, index) => {
       return index < 5 ? (
-        <li key={item.id} className={cx('sugg-item')}>
+        <li key={item.id} className={cx('sugg-item')} onClick={() => handleClickItem(item)}>
           <Image
             className={cx('avatar')}
             src={item.avatar}

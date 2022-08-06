@@ -1,0 +1,1 @@
+export const GET_USER_SELECTED = 'GET_USER_SELECTED';
