@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import styles from './Footer.module.scss';
 import Tippy from '@tippyjs/react/headless';
@@ -12,7 +13,7 @@ import FOOTER_ITEMS from './footerLinks';
 
 const cx = classNames.bind(styles);
 
-function Footer() {
+function Footer({ small }) {
   const [visible, setVisible] = useState(false);
   const [currentLanguge, setCurrentLanguge] = useState('English');
 
@@ -23,10 +24,11 @@ function Footer() {
     setCurrentLanguge(language);
     setVisible(false);
   };
+  const listRender = small ? FOOTER_ITEMS.filter((items) => !items.small) : FOOTER_ITEMS;
 
   const renderLanguageItem = () => {
-    const lastItems = FOOTER_ITEMS.length - 1;
-    return FOOTER_ITEMS[lastItems].childrenItems.map((item) => {
+    const lastItems = listRender.length - 1;
+    return listRender[lastItems].childrenItems.map((item) => {
       return (
         <Button key={item.code} text onClick={() => handleSelectLanguage(item.title)} className={cx('language-item')}>
           {item.title}
@@ -34,10 +36,11 @@ function Footer() {
       );
     });
   };
+
   return (
     <footer className={cx('footer')}>
       <ul className={cx('footer-list')}>
-        {FOOTER_ITEMS.map((route) => (
+        {listRender.map((route) => (
           <FooterItems key={route.content} {...route} />
         ))}
       </ul>
@@ -74,5 +77,9 @@ function Footer() {
     </footer>
   );
 }
+
+Footer.propTypes = {
+  small: PropTypes.bool,
+};
 
 export default Footer;

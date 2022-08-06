@@ -54,22 +54,27 @@ const FOOTER_ITEMS = [
   {
     content: 'Dance',
     href: 'https://www.instagram.com/topics/dance-and-performance/',
+    small: true,
   },
   {
     content: 'Food & Drink',
     href: 'https://www.instagram.com/topics/food-and-drink/',
+    small: true,
   },
   {
     content: 'Home & Garden',
     href: 'https://www.instagram.com/topics/home-and-garden/',
+    small: true,
   },
   {
     content: 'Music',
     href: 'https://www.instagram.com/topics/music/',
+    small: true,
   },
   {
     content: 'Visual Arts',
     href: 'https://www.instagram.com/topics/visual-arts/',
+    small: true,
   },
   {
     content: 'Language',

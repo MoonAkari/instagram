@@ -1,0 +1,2 @@
+export const EMPTY_SEARCH_TERM = 'EMPTY_SEARCH_TERM';
+export const GET_USER_FROM_API = 'GET_USER_FROM_API';

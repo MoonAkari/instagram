@@ -7,10 +7,9 @@
   font-size: 1.4rem;
   font-weight: 500;
   cursor: pointer;
-  user-select: none;
 
   & + .wrapper {
-    margin-left: 16px;
+    margin-left: 8px;
   }
 
   &.disable {
@@ -29,6 +28,10 @@
   &.underline:hover {
     text-decoration: underline !important;
   }
+
+  &span {
+    text-align: center;
+  }
 }
 
 .primary {
@@ -39,7 +42,9 @@
 .border {
   min-width: 110px;
   border: 1px solid rgba(22, 24, 35, 0.12);
-  background-color: #fff;
+  border-radius: 4px;
+
+  // background-color: #fff;
 }
 
 .rounded {

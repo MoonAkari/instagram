@@ -4,11 +4,13 @@ import Tippy from '@tippyjs/react/headless';
 import React, { useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faCircleXmark, faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Popover from '../popover/Popover';
 import AccountItems from '../accountItems/AccountItems';
 import useDebounce from '../../hooks/useDebounce';
-import * as apiServices from '../../services/apiServices';
+import { fetchUsersBySearch, setEmptySearchTerm } from '../../store/usersAPI/action';
+import { selectUsersFromApi } from '../../store/selector';
 
 const cx = classNames.bind(styles);
 
@@ -36,12 +38,13 @@ let recentData = [
 ];
 
 function Search() {
-  const [searchResult, setSearchResult] = useState([]);
   const [inputValue, setInputValue] = useState('');
   const [visible, setVisible] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const inputRef = useRef('');
   const debounce = useDebounce(inputValue, 500);
+  const inputRef = useRef('');
+  const dispatch = useDispatch();
+
+  const usersFromApi = useSelector(selectUsersFromApi);
 
   const show = () => setVisible(true);
   const hide = () => setVisible(false);
@@ -59,6 +62,15 @@ function Search() {
     setVisible(false);
     setInputValue('');
   };
+
+  //Handle User API
+  useEffect(() => {
+    if (!debounce.trim()) {
+      dispatch(setEmptySearchTerm());
+      return;
+    }
+    dispatch(fetchUsersBySearch(debounce));
+  }, [debounce, dispatch]);
 
   //Handle display Recent search
   const RecentSearch = () => {
@@ -82,40 +94,22 @@ function Search() {
 
   //Handle display search result
   const SearchResultComp = () => {
-    if (searchResult.length > 0) {
-      return searchResult.map((data) => {
-        return loading ? (
+    if (usersFromApi.listUsers.length > 0) {
+      return usersFromApi.listUsers.map((data) => {
+        return usersFromApi.loading ? (
           <FontAwesomeIcon key={data.id} className={cx('loading-resultbar')} icon={faSpinner} />
         ) : (
           <AccountItems key={data.id} searchData={data} onClick={handleClickResult} />
         );
       });
     } else {
-      return loading ? (
+      return usersFromApi.loading ? (
         <FontAwesomeIcon className={cx('loading-resultbar')} icon={faSpinner} />
       ) : (
         <div className={cx('fallback')}>No results found.</div>
       );
     }
   };
-
-  //Handle User API
-  useEffect(() => {
-    if (!debounce.trim()) {
-      setSearchResult([]);
-      return;
-    }
-
-    const fetchApi = async () => {
-      setLoading(true);
-
-      const result = await apiServices.getSearch(debounce);
-      setSearchResult(result);
-
-      setLoading(false);
-    };
-    fetchApi();
-  }, [debounce]);
 
   return (
     <div className={cx('container')}>
@@ -147,11 +141,11 @@ function Search() {
             </div>
           )}
           <button>
-            {!!visible && !loading && (
+            {!!visible && !usersFromApi.loading && (
               <FontAwesomeIcon className={cx('clear-icon')} icon={faCircleXmark} onClick={handleClearBtn} />
             )}
           </button>
-          {loading && <FontAwesomeIcon className={cx('loading-icon')} icon={faSpinner} />}
+          {usersFromApi.loading && <FontAwesomeIcon className={cx('loading-icon')} icon={faSpinner} />}
         </div>
       </Tippy>
     </div>

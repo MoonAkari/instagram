@@ -1,12 +1,14 @@
 import { combineReducers } from 'redux';
 import authReducer from './auth/reducer';
-import usersReducer from './users/reducer';
 import postsReducer from './posts/reducer';
+import usersReducer from './users/reducer';
+import usersReducerFromApi from './usersAPI/reducer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
-  users: usersReducer,
   posts: postsReducer,
+  users: usersReducer,
+  usersApi: usersReducerFromApi,
 });
 
 export default rootReducer;

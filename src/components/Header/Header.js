@@ -11,7 +11,7 @@ import { selectLoginStatus } from '../../store/selector';
 const cx = classNames.bind(styles);
 
 function Header() {
-  let authenticated = useSelector(selectLoginStatus);
+  const authenticated = useSelector(selectLoginStatus);
 
   return (
     <header className={cx('header')}>
