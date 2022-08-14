@@ -201,3 +201,10 @@
     font-weight: 400;
   }
 }
+
+/* mobile and tablet */
+@media (max-width: 64em) {
+  .sidebar {
+    display: none;
+  }
+}

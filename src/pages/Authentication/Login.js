@@ -14,10 +14,20 @@ const cx = classNames.bind(styles);
 function LoginLayout() {
   const [usernameValue, setUsernameValue] = useState('');
   const [pwdValue, setPwdValue] = useState('');
+  const [errorAlert, setErrorAlert] = useState('');
   const dispatch = useDispatch();
 
   const handleLogin = () => {
-    if (!usernameValue && !usernameValue) dispatch(setLoginSuccess(true));
+    if (usernameValue.length < 6) {
+      setErrorAlert("The username you entered doesn't belong to an account. Please check your username and try again.");
+      return false;
+    }
+    // if (usernameValue !== 'sonsonson' && pwdValue !== '3lanson') {
+    //   setErrorAlert('Sorry, your password was incorrect. Please double-check your password.');
+    //   return false;
+    // } else {
+    dispatch(setLoginSuccess(true));
+    // }
   };
 
   const handleUsernameInput = (e) => {
@@ -30,7 +40,7 @@ function LoginLayout() {
 
   return (
     <>
-      <div className={cx('side-image')} style={{ backgroundImage: `url(${images.phoneLogin})` }}></div>
+      <div className={cx('side-image')} style={{ backgroundImage: `url(${images.phoneLogin})` }} />
 
       <div className={cx('wrapper')}>
         <div className={cx('login-box')}>
@@ -38,57 +48,80 @@ function LoginLayout() {
             <img className={cx('logo-img')} src={images.logoLogin} alt="logo"></img>
           </div>
 
-          <div className={cx('login-content')}>
-            <div className={cx('username-wrapper')}>
-              <div className={cx('username-box')}>
-                <input
-                  className={cx('input-login', { active: usernameValue })}
-                  type="email"
-                  value={usernameValue}
-                  onChange={handleUsernameInput}
-                />
-                <span className={cx('description', { active: usernameValue })}>Phone number, username, or email </span>
+          <form action="/login" acceptCharset="utf-8" className={cx('login-form')} onClick={(e) => e.preventDefault()}>
+            <div className={cx('login-content')}>
+              <div className={cx('input-wrapper')}>
+                <div className={cx('input-box')}>
+                  <input
+                    className={cx('input-login', { active: usernameValue })}
+                    type="text"
+                    value={usernameValue}
+                    onChange={handleUsernameInput}
+                    autoFocus
+                    onKeyPress={(e) => {
+                      if (e.key === 'Enter') handleLogin();
+                    }}
+                    required
+                  />
+                  <span className={cx('description', { active: usernameValue })}>
+                    Phone number, username, or email{' '}
+                  </span>
+                </div>
+              </div>
+
+              <div className={cx('input-wrapper')}>
+                <div className={cx('input-box')}>
+                  <input
+                    className={cx('input-login', { active: pwdValue })}
+                    type="password"
+                    value={pwdValue}
+                    onChange={handlePwdInput}
+                    onKeyPress={(e) => {
+                      if (e.key === 'Enter') handleLogin();
+                    }}
+                    required
+                  />
+                  <span className={cx('description', { active: pwdValue })}>Password</span>
+                </div>
               </div>
             </div>
 
-            <div className={cx('pwd-wrapper')}>
-              <div className={cx('pwd-box')}>
-                <input
-                  className={cx('input-login', { active: pwdValue })}
-                  type="password"
-                  value={pwdValue}
-                  onChange={handlePwdInput}
-                />
-                <span className={cx('description', { active: pwdValue })}>Password</span>
-              </div>
+            <div className={cx('login-btn-wrapper')}>
+              <Button
+                primary
+                small
+                className={cx('login-btn')}
+                onClick={handleLogin}
+                disable={!(usernameValue && pwdValue.length > 5)}
+              >
+                Log In
+              </Button>
             </div>
+          </form>
 
-            <Button primary small className={cx('login-btn')} onClick={handleLogin}>
-              Log In
-            </Button>
-            <div className={cx('divider')}>
-              <div className={cx('divider-line')}></div>
-              <div className={cx('divider-text')}>
-                <p>OR</p>
-              </div>
-              <div className={cx('divider-line')}></div>
+          <div className={cx('divider')}>
+            <div className={cx('divider-line')}></div>
+            <div className={cx('divider-text')}>
+              <span>OR</span>
             </div>
-            <Button text icon className={cx('facebook-login')} iconLeft={<FontAwesomeIcon icon={faFacebookSquare} />}>
-              Log in with Facebook
-            </Button>
-            <Button text className={cx('fogot-pwd')}>
-              Fogot password?
-            </Button>
+            <div className={cx('divider-line')}></div>
           </div>
+          <Button text icon className={cx('facebook-login')} iconLeft={<FontAwesomeIcon icon={faFacebookSquare} />}>
+            Log in with Facebook
+          </Button>
+          {errorAlert && <span className={cx('error-alert')}>{errorAlert}</span>}
+          <Button text className={cx('fogot-pwd')}>
+            Fogot password?
+          </Button>
         </div>
 
         <div className={cx('change-box')}>
-          <p className={cx('change-content')}>
+          <label className={cx('change-content')}>
             Don't have an account?&nbsp;
-            <Button text className={cx('change-btn')}>
+            <Button text to="/register" className={cx('change-btn')}>
               Sign up
             </Button>
-          </p>
+          </label>
         </div>
 
         <div className={cx('getapp')}>

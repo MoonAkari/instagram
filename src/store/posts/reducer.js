@@ -13,7 +13,7 @@ const initialState = [
     bookmarked: true,
     title: 'Đồ án times',
     image:
-      'https://scontent.fsgn2-4.fna.fbcdn.net/v/t1.6435-9/81172370_2628303377260673_4951614233021251584_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=730e14&_nc_ohc=B3iBJs6CAwUAX8IwZO2&_nc_ht=scontent.fsgn2-4.fna&oh=00_AT958DV1swmQe6Tr6omtIplsIx8A-WnZJInKUXNipOew9w&oe=62FF3793',
+      'https://scontent.fsgn2-6.fna.fbcdn.net/v/t1.6435-9/132297550_3543582379066097_1314718618935596856_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=bEiWcr08F6MAX9mqzqt&_nc_ht=scontent.fsgn2-6.fna&oh=00_AT-6JXwIIycFKpPGbwF5hfZVFr89CXqjZ6Awq4XIT8a4Kw&oe=631EA4FD',
     created_at: '2022-05-05 15:34:44',
     comments: [
       {

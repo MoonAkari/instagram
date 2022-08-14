@@ -10,7 +10,7 @@ const initialState = {
       full_name: 'Lâm Trần',
       nickname: 'lamtran_1',
       avatar:
-        'https://scontent.fsgn15-1.fna.fbcdn.net/v/t39.30808-1/275364808_4655985554523505_4271014837792892471_n.jpg?stp=c671.254.1111.1111a_dst-jpg_s160x160&_nc_cat=105&ccb=1-7&_nc_sid=7206a8&_nc_ohc=snY2JoB8wDsAX_BYO6_&_nc_ht=scontent.fsgn15-1.fna&oh=00_AT_x31gycTZJUv6Iw020yNuvIYRrZUeSWxdgrIQSncVUIQ&oe=62ECF741',
+        'https://scontent.fsgn2-5.fna.fbcdn.net/v/t39.30808-6/297023288_1731260130547164_8889188638100111785_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=RDMQvOKnFKgAX-jABpE&_nc_ht=scontent.fsgn2-5.fna&oh=00_AT-ykV13WW4qoYPiQkfsm-Lmt93McyKSKoEdwgKUxoGAxw&oe=62FD3FA2',
       bio: '',
       tick: false,
       followings_count: 47,
@@ -52,7 +52,7 @@ const initialState = {
       full_name: 'Nguyễn Thị Ngọc Diễm',
       nickname: 'mied_',
       avatar:
-        'https://scontent.fsgn2-1.fna.fbcdn.net/v/t39.30808-6/279936257_1661501774189667_7998557812211469588_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=GjHGnyproHEAX-2MvAv&_nc_ht=scontent.fsgn2-1.fna&oh=00_AT97sT4iYCXy7ZD4HZUOYM2IxutTOajda4pPXqjHF62pWQ&oe=62F3E40B',
+        'https://scontent.fsgn2-5.fna.fbcdn.net/v/t39.30808-6/297023288_1731260130547164_8889188638100111785_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=RDMQvOKnFKgAX-jABpE&_nc_ht=scontent.fsgn2-5.fna&oh=00_AT-ykV13WW4qoYPiQkfsm-Lmt93McyKSKoEdwgKUxoGAxw&oe=62FD3FA2',
       bio: 'Dễ cục súc',
       tick: false,
       followings_count: 51,
@@ -73,7 +73,7 @@ const initialState = {
       full_name: '𝐇𝐮𝐲̀𝐧𝐡 𝐓𝐡𝐚̉𝐨 mer',
       nickname: 'thao15',
       avatar:
-        'https://scontent.fsgn15-1.fna.fbcdn.net/v/t39.30808-1/296231370_3009773619322374_8981633869020629096_n.jpg?stp=dst-jpg_p320x320&_nc_cat=107&ccb=1-7&_nc_sid=7206a8&_nc_ohc=SiKkiPECxdcAX-dVLxe&_nc_ht=scontent.fsgn15-1.fna&oh=00_AT8XXRrBwxHblKEyUD3kqfm-1WE1uCsMJmu56pgTg5mv0w&oe=62F33B42',
+        'https://scontent.fsgn2-1.fna.fbcdn.net/v/t39.30808-1/296231370_3009773619322374_8981633869020629096_n.jpg?stp=dst-jpg_p200x200&_nc_cat=107&ccb=1-7&_nc_sid=7206a8&_nc_ohc=nZkz_X5Y7CAAX8wfM50&_nc_ht=scontent.fsgn2-1.fna&oh=00_AT8kyf0wRL6K0FcQO7_MT7H8DfZI2W7GNLR71TJKpzv38A&oe=62FD1E82',
       bio: 'Movie Character',
       tick: false,
       followings_count: 339,
@@ -94,7 +94,7 @@ const initialState = {
       full_name: 'Son Luong Thai',
       nickname: 'monmotion',
       avatar:
-        'https://scontent.fsgn15-1.fna.fbcdn.net/v/t1.6435-9/132297550_3543582379066097_1314718618935596856_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=BbSRsxJCfzIAX8k3AJO&_nc_ht=scontent.fsgn15-1.fna&oh=00_AT_EDz5SAF6PqcUqBy_O5a-ZUW_R78FsCX0TFCfBHCN4DQ&oe=62F3237D',
+        'https://scontent.fsgn2-6.fna.fbcdn.net/v/t1.6435-9/132297550_3543582379066097_1314718618935596856_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=bEiWcr08F6MAX9mqzqt&_nc_ht=scontent.fsgn2-6.fna&oh=00_AT-6JXwIIycFKpPGbwF5hfZVFr89CXqjZ6Awq4XIT8a4Kw&oe=631EA4FD',
       bio: '',
       tick: false,
       followings_count: 6,

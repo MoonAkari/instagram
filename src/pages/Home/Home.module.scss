@@ -52,7 +52,14 @@
 
 /* mobile and tablet */
 @media (max-width: 64em) {
+  .container {
+    margin-right: 0;
+  }
+
   .sidebar {
     display: none;
+  }
+  .content {
+    margin: 0;
   }
 }
